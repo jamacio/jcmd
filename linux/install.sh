@@ -1,40 +1,40 @@
 #!/bin/bash
 
-cat << EOF > /usr/local/bin/jcmd
+cat << EOF > ~/jcmd
 #!/bin/bash
 
 add() {
     command_name=\$1
     command_value=\$2
-    echo "\$command_name=\"\$command_value\"" >> \$HOME/.jcmds/commands.conf
+    echo "\$command_name=\"\$command_value\"" >> ~/.jcmds/commands.conf
     echo "Command '\$command_name' added successfully!"
 }
 
 rm() {
     command_name=\$1
-    grep -v "\$command_name=" \$HOME/.jcmds/commands.conf > \$HOME/.jcmds/commands.conf.tmp
-    mv \$HOME/.jcmds/commands.conf.tmp \$HOME/.jcmds/commands.conf
+    grep -v "\$command_name=" ~/.jcmds/commands.conf > ~/.jcmds/commands.conf.tmp
+    mv ~/.jcmds/commands.conf.tmp ~/.jcmds/commands.conf
     echo "Command '\$command_name' removed successfully!"
 }
 
 list() {
     echo "Available commands:"
-    cat \$HOME/.jcmds/commands.conf | cut -d'=' -f1
+    cat ~/.jcmds/commands.conf | cut -d'=' -f1
 }
 
 version() {
   echo "v0.0.1"
 }
 
-if [ ! -d "\$HOME/.jcmds" ]; then
-    mkdir -p \$HOME/.jcmds
+if [ ! -d "~/.jcmds" ]; then
+    mkdir -p ~/.jcmds
 fi
 
-if [ ! -f "\$HOME/.jcmds/commands.conf" ]; then
-    echo 'hello="echo '\''Hello World'\''"' > \$HOME/.jcmds/commands.conf
+if [ ! -f "~/.jcmds/commands.conf" ]; then
+    echo 'hello="echo '\''Hello World'\''"' > ~/.jcmds/commands.conf
 fi
 
-source \$HOME/.jcmds/commands.conf
+source ~/.jcmds/commands.conf
 
 command=\$1
 if [ "\$command" = "" ]; then
@@ -55,6 +55,6 @@ else
 fi
 EOF
 
-chmod +x /usr/local/bin/jcmd
+chmod +x ~/jcmd
 
 echo "The 'jcmd' command has been successfully installed!"
