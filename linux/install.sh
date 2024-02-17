@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat << EOF > /usr/local/bin/jcmd
+sudo sh -c 'cat << EOF > /usr/local/bin/jcmd
 #!/bin/bash
 
 add() {
@@ -26,13 +26,29 @@ version() {
   echo "v0.0.1"
 }
 
-if [ ! -d "\$HOME/.jcmds" ]; then
-    mkdir -p \$HOME/.jcmds
-fi
+makedir() {
+    if [ ! -d "\$HOME/.jcmds" ]; then
+        mkdir -p \$HOME/.jcmds
+    fi
 
-if [ ! -f "\$HOME/.jcmds/commands.conf" ]; then
-    echo 'hello="echo '\''Hello World'\''"' > \$HOME/.jcmds/commands.conf
-fi
+    if [ ! -f "\$HOME/.jcmds/commands.conf" ]; then
+        printf "hello=\"echo Hello World\"\n" > \$HOME/.jcmds/commands.conf
+    fi
+}
+
+generate_completions() {
+    local current_word previous_word
+    COMPREPLY=()
+    current_word="\${COMP_WORDS[COMP_CWORD]}"
+    previous_word="\${COMP_WORDS[COMP_CWORD-1]}"
+
+    if [[ \$previous_word == "jcmd" ]] ; then
+        local commands=\$(cat \$HOME/.jcmds/commands.conf | cut -d'=' -f1)
+        COMPREPLY=( \$(compgen -W "\$commands" -- \$current_word) )
+    fi
+}
+
+makedir
 
 source \$HOME/.jcmds/commands.conf
 
@@ -44,7 +60,7 @@ elif [ "\$command" = "add" ]; then
     add \$2 \$3
 elif [ "\$command" = "rm" ]; then
     rm \$2
-    echo "Command '\$command_name' removed successfully!"
+    echo "Command '\$command_name' rmd successfully!"
 elif [ "\$command" = "list" ]; then
    list
 elif [ "\$command" = "version" ]; then
@@ -55,8 +71,11 @@ elif [ -z "\${!command}" ]; then
 else
     eval \${!command}
 fi
-EOF
 
-chmod +x /usr/local/bin/jcmd
+complete -F generate_completions jcmd
+EOF'
+
+sudo chmod +x /usr/local/bin/jcmd
 
 echo "The 'jcmd' command has been successfully installed!"
+jcmd

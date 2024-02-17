@@ -9,9 +9,9 @@ This repository contains the `jcmd` script, a command-line tool that allows you 
 To **install** or **update** jcmd, you should run the [install script](https://github.com/jamacio/jcmd/blob/main/linux/install.sh/) . To do that, you may either download and run the script manually, or use the following cURL or Wget command:
 
 ```sh
-sudo curl -o- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh | sudo bash
+curl -o- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh | bash
 ```
 
 ```sh
-sudo wget -qO- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh | sudo bash
+wget -qO- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh | bash
 ```
