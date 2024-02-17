@@ -6,7 +6,7 @@ cat << EOF > ~/jcmd
 add() {
     command_name=\$1
     command_value=\$2
-    echo "\$command_name=\"\$command_value\"" >> ~/.jcmds/commands.conf
+    echo "\$command_name=\\\"\$command_value\\\"" >> ~/.jcmds/commands.conf
     echo "Command '\$command_name' added successfully!"
 }
 
