@@ -23,7 +23,7 @@ wget -qO- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh
 Add a new command
 
 ```
-jcmd add "my_command" "echo Hello, world!; date"
+jcmd add my_command "echo Hello, world! ; date"
 ```
 
 Execute a command
