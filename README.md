@@ -2,8 +2,6 @@
 
 This repository contains the `jcmd` script, a command-line tool that allows you to add, remove, and execute custom commands.
 
-## Installation and Update
-
 ### Installation & Update Script
 
 To **install** or **update** jcmd, you should run the install script. To do that, you may either download and run the script manually, or use the following cURL or Wget command:
@@ -15,8 +13,6 @@ curl -o- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh 
 ```sh
 wget -qO- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh | bash
 ```
-
-### Usage
 
 ## Here are some examples of how to use jcmd:
 
