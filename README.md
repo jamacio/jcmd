@@ -61,4 +61,5 @@ jcmd works by maintaining a configuration file that stores all your custom comma
 ## License
 
 This project is licensed under the terms of the MIT license.
+
 See [LICENSE.md](./LICENSE.md).
