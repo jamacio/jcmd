@@ -32,7 +32,7 @@ makedir() {
     fi
 
     if [ ! -f "\$HOME/.jcmds/commands.conf" ]; then
-        printf "hello=\"echo Hello World\"\n" > \$HOME/.jcmds/commands.conf
+        printf "hello=\"echo Hello, World!\"\n" > \$HOME/.jcmds/commands.conf
     fi
 }
 
