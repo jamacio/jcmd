@@ -60,7 +60,7 @@ elif [ "\$command" = "add" ]; then
     add \$2 \$3
 elif [ "\$command" = "rm" ]; then
     rm \$2
-    echo "Command '\$command_name' rmd successfully!"
+    echo "Command '\$command_name' removed successfully!"
 elif [ "\$command" = "list" ]; then
    list
 elif [ "\$command" = "version" ]; then
@@ -78,4 +78,27 @@ EOF'
 sudo chmod +x /usr/local/bin/jcmd
 
 echo "The 'jcmd' command has been successfully installed!"
+
+# Add the completion script to bash_completion.d
+sudo sh -c 'cat << EOF > /etc/bash_completion.d/jcmd
+#!/bin/bash
+
+generate_completions() {
+    local current_word previous_word
+    COMPREPLY=()
+    current_word="\${COMP_WORDS[COMP_CWORD]}"
+    previous_word="\${COMP_WORDS[COMP_CWORD-1]}"
+
+    if [[ \$previous_word == "jcmd" ]] ; then
+        local commands=\$(cat \$HOME/.jcmds/commands.conf | cut -d'=' -f1)
+        COMPREPLY=( \$(compgen -W "\$commands" -- \$current_word) )
+    fi
+}
+
+complete -F generate_completions jcmd
+EOF'
+
+# Source the new completion script
+source /etc/bash_completion.d/jcmd
+
 jcmd
