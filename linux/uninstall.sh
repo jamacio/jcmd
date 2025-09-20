@@ -8,6 +8,12 @@ sudo rm -f /usr/local/bin/jcmd
 sudo rm -f /usr/bin/jcmd
 rm -f ~/.local/bin/jcmd
 
+# Remove any backup files
+echo "Removing backup files..."
+rm -f ~/.local/bin/jcmd.bak.*
+sudo rm -f /usr/local/bin/jcmd.bak.*
+sudo rm -f /usr/bin/jcmd.bak.*
+
 # Remove the completion script
 echo "Removing completion script..."
 sudo rm -f /etc/bash_completion.d/jcmd
