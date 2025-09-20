@@ -14,6 +14,20 @@ curl -o- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh 
 wget -qO- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/install.sh | bash
 ```
 
+### Uninstall
+
+To completely remove jcmd from your system, run the following command:
+
+```sh
+curl -o- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/uninstall.sh | bash
+```
+
+or
+
+```sh
+wget -qO- https://raw.githubusercontent.com/jamacio/jcmd/v0.0.1/linux/uninstall.sh | bash
+```
+
 ## Here are some examples of how to use jcmd:
 
 Add a new command
