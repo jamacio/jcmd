@@ -2,9 +2,11 @@
 
 echo "Uninstalling jcmd..."
 
-# Remove the main executable
+# Remove the main executable from all possible locations
 echo "Removing main executable..."
 sudo rm -f /usr/local/bin/jcmd
+sudo rm -f /usr/bin/jcmd
+rm -f ~/.local/bin/jcmd
 
 # Remove the completion script
 echo "Removing completion script..."
