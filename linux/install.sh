@@ -120,13 +120,16 @@ if [ -f ~/.bashrc ]; then
     fi
 fi
 
-echo "The 'jcmd' command has been successfully installed!"
+# Reload the current shell to activate completion
+source ~/.bashrc 2>/dev/null || true
+source /etc/bash_completion.d/jcmd 2>/dev/null || true
+
+echo "jcmd installed successfully!"
 echo ""
-echo "IMPORTANT: Para ativar o auto completar, execute um dos seguintes comandos:"
-echo "  1. source /etc/bash_completion.d/jcmd"
-echo "  2. source ~/.bashrc"
-echo "  3. Feche e abra um novo terminal"
-echo ""
-echo "Após isso, você poderá usar TAB para auto completar comandos jcmd!"
+echo "Usage examples:"
+echo "  jcmd add mycommand \"echo Hello World\""
+echo "  jcmd mycommand"
+echo "  jcmd list"
+echo "  jcmd rm mycommand"
 
 jcmd
